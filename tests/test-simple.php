@@ -19,7 +19,7 @@ echo "<hr>";
 // Test 1: Can we load config.php?
 echo "<h2>Test 1: Load config.php</h2>";
 try {
-    require_once 'config.php';
+    require_once '../config/config.php';
     echo "<p style='color:green;'>✅ config.php loaded successfully</p>";
     echo "<p>DB_HOST: " . DB_HOST . "</p>";
     echo "<p>DB_USER: " . DB_USER . "</p>";
@@ -67,7 +67,7 @@ echo "<hr>";
 // Test 3: Can we load auth.php?
 echo "<h2>Test 3: Load auth.php</h2>";
 try {
-    require_once 'auth.php';
+    require_once '../auth/auth.php';
     echo "<p style='color:green;'>✅ auth.php loaded successfully</p>";
 } catch (Exception $e) {
     echo "<p style='color:red;'>❌ ERROR loading auth.php:</p>";
@@ -79,6 +79,6 @@ echo "<hr>";
 echo "<h2>✅ All Tests Completed</h2>";
 echo "<p>Jika sampai sini berarti PHP, config.php, dan auth.php OK.</p>";
 echo "<p>Masalah mungkin di process-login.php atau login.php</p>";
-echo "<p><a href='login.php'>Try Login Page</a></p>";
+echo "<p><a href="../auth/login.php">Try Login Page</a></p>";
 echo "</body></html>";
 ?>

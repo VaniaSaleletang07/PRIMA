@@ -11,7 +11,7 @@ ini_set('display_errors', 1);
 echo "<h1>DEBUG Login System</h1>";
 echo "<p>Testing database dan authentication...</p><hr>";
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 // Test 1: Database Connection
 echo "<h2>Test 1: Database Connection</h2>";
@@ -133,7 +133,7 @@ if ($is_valid && $admin && empty($missing_columns)) {
     echo "<li>Username: <strong>admin</strong></li>";
     echo "<li>Password: <strong>admin123</strong></li>";
     echo "</ul>";
-    echo "<p><a href='login.php' style='background: #c8102e; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;'>Login Sekarang</a></p>";
+    echo "<p><a href="../auth/login.php" style='background: #c8102e; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;'>Login Sekarang</a></p>";
 } else {
     echo "<p style='color: red; font-size: 18px;'><strong>❌ ADA MASALAH!</strong></p>";
     echo "<p>Lihat error di atas dan ikuti solusi yang diberikan.</p>";

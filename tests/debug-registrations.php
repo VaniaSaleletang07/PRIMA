@@ -10,7 +10,7 @@ ini_set('display_errors', 1);
 echo "<h1>🔍 DEBUG USER REGISTRATIONS</h1>";
 echo "<hr>";
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 try {
     $db = Database::getInstance()->getConnection();

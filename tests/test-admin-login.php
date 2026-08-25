@@ -9,7 +9,7 @@ ini_set('display_errors', 1);
 echo "<h1>🔍 Test Admin Login</h1>";
 echo "<hr>";
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 try {
     $db = Database::getInstance()->getConnection();
@@ -89,7 +89,7 @@ try {
         echo "<h3 style='color: #721c24; margin-top: 0;'>❌ Password Tidak Valid!</h3>";
         echo "<p style='color: #721c24;'>Hash password di database tidak cocok dengan password manapun yang di-test.</p>";
         echo "<p style='color: #721c24;'><strong>Solusi:</strong> Perlu regenerate password hash.</p>";
-        echo "<a href='fix-password.php' style='display: inline-block; margin-top: 10px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 4px;'>Fix Password Sekarang</a>";
+        echo "<a href="../auth/fix-password.php" style='display: inline-block; margin-top: 10px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 4px;'>Fix Password Sekarang</a>";
         echo "</div>";
     }
     
@@ -102,8 +102,8 @@ try {
     
     echo "<hr>";
     echo "<h2>🔗 Links:</h2>";
-    echo "<a href='login.php' style='display: inline-block; margin: 5px; padding: 10px 20px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;'>Go to Login</a>";
-    echo "<a href='debug-login.php' style='display: inline-block; margin: 5px; padding: 10px 20px; background: #6c757d; color: white; text-decoration: none; border-radius: 4px;'>Debug Login System</a>";
+    echo "<a href="../auth/login.php" style='display: inline-block; margin: 5px; padding: 10px 20px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;'>Go to Login</a>";
+    echo "<a href="../tests/debug-login.php" style='display: inline-block; margin: 5px; padding: 10px 20px; background: #6c757d; color: white; text-decoration: none; border-radius: 4px;'>Debug Login System</a>";
     
 } catch (Exception $e) {
     echo "<div style='background: #f8d7da; padding: 20px; border-radius: 5px; border: 1px solid #f5c6cb;'>";

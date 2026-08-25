@@ -18,7 +18,7 @@ $_SERVER['REQUEST_METHOD'] = 'POST';
 
 echo "<h2>Step 1: Load Config</h2>";
 try {
-    require_once 'config.php';
+    require_once '../config/config.php';
     echo "✅ config.php loaded<br>";
     echo "DB_HOST: " . DB_HOST . "<br>";
     echo "DB_NAME: " . DB_NAME . "<br><br>";
@@ -203,7 +203,7 @@ echo "<ol>";
 echo "<li>Clear browser cache & cookies</li>";
 echo "<li>Close browser completely</li>";
 echo "<li>Buka browser baru (atau incognito)</li>";
-echo "<li>Login di: <a href='login.php'>login.php</a></li>";
+echo "<li>Login di: <a href="../auth/login.php">login.php</a></li>";
 echo "<li>Username: <strong>admin</strong></li>";
 echo "<li>Password: <strong>admin123</strong></li>";
 echo "</ol>";

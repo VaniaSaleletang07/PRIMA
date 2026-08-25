@@ -27,7 +27,7 @@ echo "Password: <strong>" . str_repeat('*', strlen($_POST['password'])) . "</str
 // Load config
 echo "<h2>Step 2: Load Config</h2>";
 try {
-    require_once 'config.php';
+    require_once '../config/config.php';
     echo "<p class='success'>✅ config.php loaded</p>";
     echo "DB_NAME: " . DB_NAME . "<br>";
     echo "DB_HOST: " . DB_HOST . "<br><br>";
@@ -126,7 +126,7 @@ if (!$isValid) {
     echo "<p>Password yang Anda masukkan tidak cocok dengan hash di database.</p>";
     echo "<p><strong>Solusi:</strong></p>";
     echo "<ol>";
-    echo "<li>Akses <a href='fix-password.php'>fix-password.php</a> untuk reset password</li>";
+    echo "<li>Akses <a href="../auth/fix-password.php">fix-password.php</a> untuk reset password</li>";
     echo "<li>Atau jalankan command: <code>php fix-password.php</code></li>";
     echo "</ol>";
     echo "</div>";
@@ -178,7 +178,7 @@ echo "<hr>";
 echo "<div style='background:#d4edda; padding:20px; border-radius:5px; margin:20px 0;'>";
 echo "<h2 style='color:#155724;'>✅ LOGIN SUCCESSFUL!</h2>";
 echo "<p>All checks passed. You should be able to login now.</p>";
-echo "<p><a href='login.php' style='display:inline-block; background:#28a745; color:white; padding:10px 20px; text-decoration:none; border-radius:5px;'>Try Login Again</a></p>";
+echo "<p><a href="../auth/login.php" style='display:inline-block; background:#28a745; color:white; padding:10px 20px; text-decoration:none; border-radius:5px;'>Try Login Again</a></p>";
 echo "</div>";
 
 echo "</body></html>";

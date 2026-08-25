@@ -20,7 +20,7 @@ echo "Status: ✅ OK<br><br>";
 // Test 2: Config File
 echo "<h2>Test 2: Load Config File</h2>";
 try {
-    require_once 'config.php';
+    require_once '../config/config.php';
     echo "✅ config.php loaded successfully<br>";
     echo "DB_HOST: " . DB_HOST . "<br>";
     echo "DB_USER: " . DB_USER . "<br>";
@@ -122,5 +122,5 @@ try {
 echo "<hr>";
 echo "<h2>✅ Diagnosis Complete</h2>";
 echo "<p>Jika semua test di atas PASS, maka masalahnya ada di process-login.php atau login.php</p>";
-echo "<p><a href='login.php'>Back to Login Page</a></p>";
+echo "<p><a href="../auth/login.php">Back to Login Page</a></p>";
 ?>

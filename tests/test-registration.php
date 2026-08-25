@@ -25,7 +25,7 @@ th{background:#f8f9fa;font-weight:bold;}
 echo "<h1>🔍 TEST REGISTRATION SYSTEM</h1>";
 echo "<hr>";
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 try {
     $db = Database::getInstance()->getConnection();
@@ -245,15 +245,15 @@ try {
     echo "<div class='info'>";
     echo "<strong>Quick Actions:</strong><br><br>";
     
-    echo "1. <a href='register.php' target='_blank'>Buka Halaman Register</a> - Daftar user baru<br>";
-    echo "2. <a href='approve-registrations.php' target='_blank'>Buka Review Pendaftaran</a> - Lihat pending registrations<br>";
-    echo "3. <a href='test-registration.php'>Refresh halaman ini</a> - Cek ulang<br>";
+    echo "1. <a href="../auth/register.php" target='_blank'>Buka Halaman Register</a> - Daftar user baru<br>";
+    echo "2. <a href="../admin/approve-registrations.php" target='_blank'>Buka Review Pendaftaran</a> - Lihat pending registrations<br>";
+    echo "3. <a href="../tests/test-registration.php">Refresh halaman ini</a> - Cek ulang<br>";
     echo "</div>";
     
     if ($pending > 0) {
         echo "<div class='success'>";
         echo "<h3>✅ SISTEM BERFUNGSI NORMAL</h3>";
-        echo "<p>Ada $pending registrasi pending. Silakan buka <a href='approve-registrations.php'>Review Pendaftaran</a> untuk approve/reject.</p>";
+        echo "<p>Ada $pending registrasi pending. Silakan buka <a href="../admin/approve-registrations.php">Review Pendaftaran</a> untuk approve/reject.</p>";
         echo "</div>";
     }
     

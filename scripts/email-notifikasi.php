@@ -10,7 +10,7 @@
  * ditentukan OTOMATIS berdasarkan tanggal masa berlaku masing-masing dokumen — lihat
  * getSuratBermasalah() di config.php. Tidak perlu dipilih manual pada mode otomatis ini.
  */
-require_once 'config.php';
+require_once '../config/config.php';
 
 // ─── MODE CRON (tanpa login, dipicu scheduler/otomatis) ──────────────────────
 $is_cli_cron = (PHP_SAPI === 'cli') && in_array('--cron', $argv ?? [], true);
@@ -35,7 +35,7 @@ if ($is_cli_cron || $is_web_cron) {
     exit(0);
 }
 
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireAdmin();
 
 $user = getCurrentUser();
@@ -895,8 +895,8 @@ $cron_url      = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'htt
       <span class="top-bar-sub">Masa Berlaku Kartu Izin Masuk</span>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <a href="vehicle-alerts.php" class="btn btn-secondary">&#8592; Notifikasi Inspeksi</a>
-      <a href="home.php" class="btn btn-secondary">&#8962; Dashboard</a>
+      <a href="../vehicles/vehicle-alerts.php" class="btn btn-secondary">&#8592; Notifikasi Inspeksi</a>
+      <a href="../home.php" class="btn btn-secondary">&#8962; Dashboard</a>
     </div>
   </div>
 

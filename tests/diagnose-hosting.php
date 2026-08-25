@@ -10,7 +10,7 @@ ini_set('display_errors', 1);
 echo "<h1>🔍 DIAGNOSE HOSTING DATABASE</h1>";
 echo "<p>Memeriksa database dan admin user...</p><hr>";
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 // Test 1: Database Connection
 echo "<h2>Test 1: Koneksi Database</h2>";

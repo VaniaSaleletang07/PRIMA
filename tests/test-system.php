@@ -34,7 +34,7 @@ $passedTests = 0;
 echo "<div class='test-section'>";
 echo "<h2>Test 1: Configuration & Database Connection</h2>";
 try {
-    require_once 'config.php';
+    require_once '../config/config.php';
     echo "✓ config.php loaded<br>";
     
     $db = Database::getInstance()->getConnection();
