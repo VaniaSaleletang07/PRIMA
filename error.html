@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error - PRIMA</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #c8102e 0%, #d71921 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .error-container {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        max-width: 600px;
+        width: 100%;
+        padding: 40px;
+        text-align: center;
+      }
+
+      .logo {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 20px;
+        background: linear-gradient(135deg, #c8102e 0%, #d71921 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 48px;
+        font-weight: bold;
+      }
+
+      h1 {
+        color: #c8102e;
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+
+      .error-code {
+        font-size: 72px;
+        font-weight: bold;
+        color: #007a3d;
+        margin: 20px 0;
+      }
+
+      .error-message {
+        color: #666;
+        font-size: 18px;
+        margin-bottom: 30px;
+        line-height: 1.6;
+      }
+
+      .btn-home {
+        display: inline-block;
+        background: linear-gradient(135deg, #007a3d 0%, #009639 100%);
+        color: white;
+        padding: 15px 40px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 122, 61, 0.3);
+      }
+
+      .btn-home:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 122, 61, 0.4);
+      }
+
+      .support-info {
+        margin-top: 30px;
+        padding-top: 30px;
+        border-top: 2px solid #f0f0f0;
+        color: #999;
+        font-size: 14px;
+      }
+
+      .company-name {
+        margin-top: 20px;
+        color: #c8102e;
+        font-weight: bold;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error-container">
+      <div class="logo">!</div>
+      <h1>Oops! Terjadi Kesalahan</h1>
+
+      <div class="error-code" id="errorCode">404</div>
+
+      <div class="error-message" id="errorMessage">
+        Halaman yang Anda cari tidak ditemukan atau telah dipindahkan.
+      </div>
+
+      <a href="/ChecklistUpdateE-KIM/index.html" class="btn-home"
+        >Kembali ke Beranda</a
+      >
+
+      <div class="support-info">
+        Jika masalah berlanjut, silakan hubungi administrator sistem.<br />
+        <strong>Support:</strong> support@pertamina.com
+      </div>
+
+      <div class="company-name">
+        PERTAMINA PATRA NIAGA<br />
+        PRIMA (Pertamina Checklist Mobil Tangki)
+      </div>
+    </div>
+
+    <script>
+      // Detect error type from URL or default to 404
+      const errorMessages = {
+        400: "Permintaan tidak valid. Silakan periksa data yang Anda kirim.",
+        401: "Anda tidak memiliki akses. Silakan login terlebih dahulu.",
+        403: "Akses ditolak. Anda tidak memiliki izin untuk mengakses halaman ini.",
+        404: "Halaman yang Anda cari tidak ditemukan atau telah dipindahkan.",
+        500: "Terjadi kesalahan pada server. Tim kami sedang memperbaikinya.",
+        503: "Layanan sedang dalam pemeliharaan. Silakan coba beberapa saat lagi.",
+      };
+
+      // Try to detect error code from URL or browser
+      let errorCode = "404";
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has("error")) {
+        errorCode = urlParams.get("error");
+      }
+
+      // Update display
+      document.getElementById("errorCode").textContent = errorCode;
+      document.getElementById("errorMessage").textContent =
+        errorMessages[errorCode] || errorMessages["404"];
+
+      // Log error for debugging (in production, send to server)
+      console.error("Error " + errorCode + " at " + window.location.href);
+    </script>
+  </body>
+</html>

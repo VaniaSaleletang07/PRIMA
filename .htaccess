@@ -1,0 +1,75 @@
+# =====================================================
+
+# DEVELOPMENT .htaccess (XAMPP-friendly)
+
+# PRIMA (Pertamina Checklist Mobil Tangki)
+
+# =====================================================
+
+# ============ DEFAULT PAGE ============
+
+DirectoryIndex login.php index.php index.html
+
+# ============ URL REWRITING ============
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+
+# Redirect home.html ke login.php (deprecated)
+RewriteRule ^home\.html$ login.php [R=301,L]
+
+</IfModule>
+
+# ============ DISABLE DIRECTORY BROWSING ============
+
+Options -Indexes
+
+# ============ ERROR PAGES ============
+
+# XAMPP (development):
+# ErrorDocument 404 /ChecklistUpdateE-KIM/error.html
+# ErrorDocument 500 /ChecklistUpdateE-KIM/error.html
+
+# HOSTING (production):
+ErrorDocument 404 /error.html
+ErrorDocument 500 /error.html
+
+# ============ CHARSET ============
+
+AddDefaultCharset UTF-8
+
+# ============ PROTECT SENSITIVE FILES ============
+
+# Hanya proteksi file yang benar-benar sensitif
+
+<FilesMatch "^(config\.php|config\.production\.php|database\.sql|database\.production\.sql|database_update_jenis\.sql)$">
+<IfModule mod_authz_core.c>
+Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+Order deny,allow
+Deny from all
+</IfModule>
+</FilesMatch>
+
+# Protect backup files
+# <FilesMatch "\.(bak|backup|old|orig|save|log)$">
+# <IfModule mod_authz_core.c>
+# Require all denied
+# </IfModule>
+# <IfModule !mod_authz_core.c>
+# Order deny,allow
+# Deny from all
+# </IfModule>
+# </FilesMatch>
+
+# ============ ALLOW .htaccess OVERRIDE ============
+
+# Pastikan httpd.conf atau apache config punya:
+
+# <Directory "C:/xampp/htdocs">
+
+# AllowOverride All
+
+# </Directory>

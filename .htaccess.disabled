@@ -1,0 +1,229 @@
+# =====================================================
+# PRODUCTION .htaccess
+# PRIMA (Pertamina Checklist Mobil Tangki)
+# =====================================================
+
+# ============ SECURITY HEADERS ============
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+    
+    # Clickjacking protection
+    Header set X-Frame-Options "SAMEORIGIN"
+    
+    # XSS Protection
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Referrer Policy
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Permissions Policy (disable unnecessary features)
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+    
+    # Content Security Policy
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'self';"
+    
+    # HTTP Strict Transport Security (HSTS) - AKTIFKAN setelah HTTPS
+    # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # Remove server signature
+    Header unset Server
+    Header unset X-Powered-By
+</IfModule>
+
+# ============ DISABLE DIRECTORY BROWSING ============
+Options -Indexes
+Options -MultiViews
+
+# ============ DISABLE SERVER SIGNATURE ============
+ServerSignature Off
+
+# ============ ERROR PAGES ============
+ErrorDocument 400 /ChecklistUpdateE-KIM/error.html
+ErrorDocument 401 /ChecklistUpdateE-KIM/error.html
+ErrorDocument 403 /ChecklistUpdateE-KIM/error.html
+ErrorDocument 404 /ChecklistUpdateE-KIM/error.html
+ErrorDocument 500 /ChecklistUpdateE-KIM/error.html
+
+# ============ PHP SETTINGS ============
+<IfModule mod_php7.c>
+    # File upload limits
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    
+    # Execution time limits
+    php_value max_execution_time 300
+    php_value max_input_time 300
+    
+    # Memory limit
+    php_value memory_limit 128M
+    
+    # Hide PHP version
+    php_flag expose_php Off
+    
+    # Disable dangerous functions (PRODUCTION)
+    php_value disable_functions "exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source"
+    
+    # Session security
+    php_value session.cookie_httponly 1
+    php_value session.use_only_cookies 1
+    php_flag session.cookie_secure On
+    
+    # Error handling (PRODUCTION - hide errors)
+    php_flag display_errors Off
+    php_flag display_startup_errors Off
+    php_value error_reporting 0
+    php_flag log_errors On
+</IfModule>
+
+# ============ CHARSET ============
+AddDefaultCharset UTF-8
+<IfModule mod_mime.c>
+    AddCharset UTF-8 .html .css .js .xml .json .txt
+</IfModule>
+
+# ============ COMPRESSION ============
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    
+    # Compress fonts
+    AddOutputFilterByType DEFLATE application/x-font-ttf
+    AddOutputFilterByType DEFLATE application/x-font-opentype
+    AddOutputFilterByType DEFLATE application/x-font-truetype
+    AddOutputFilterByType DEFLATE application/font-woff
+    AddOutputFilterByType DEFLATE application/font-woff2
+</IfModule>
+
+# ============ BROWSER CACHING ============
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType application/x-font-ttf "access plus 1 year"
+    ExpiresByType application/x-font-woff "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    
+    # HTML (no cache for dynamic content)
+    ExpiresByType text/html "access plus 0 seconds"
+    
+    # Data interchange
+    ExpiresByType application/json "access plus 0 seconds"
+    ExpiresByType application/xml "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Cache-Control headers
+    <FilesMatch "\.(ico|jpg|jpeg|png|gif|svg|css|js|woff|woff2|ttf)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    
+    <FilesMatch "\.(html|htm|php)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires 0
+    </FilesMatch>
+</IfModule>
+
+# ============ PROTECT SENSITIVE FILES ============
+<FilesMatch "^(config\.php|config\.production\.php|\.htaccess|database\.sql|database\.production\.sql|\.env|\.git|\.gitignore|composer\.json|composer\.lock|SECURITY_CHECKLIST\.md|DEPLOYMENT_GUIDE\.md)$">
+    Require all denied
+</FilesMatch>
+
+# Protect backup files
+<FilesMatch "\.(bak|backup|old|orig|save|sql|log)$">
+    Require all denied
+</FilesMatch>
+
+# Protect configuration directories
+RedirectMatch 403 /\.git
+RedirectMatch 403 /\.env
+
+# ============ BLOCK BAD BOTS & USER AGENTS ============
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Block bad bots
+    RewriteCond %{HTTP_USER_AGENT} ^$ [OR]
+    RewriteCond %{HTTP_USER_AGENT} (libwww|wget|python|nikto|curl|scan|java|winhttp|clshttp|loader) [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} (;|<|>|'|"|\)|\(|%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} (bot|spider|crawl|scraper) [NC]
+    RewriteCond %{HTTP_USER_AGENT} !(googlebot|bingbot|msnbot) [NC]
+    RewriteRule .* - [F,L]
+    
+    # Block suspicious requests
+    RewriteCond %{QUERY_STRING} (union|select|insert|drop|update|delete|concat|script) [NC,OR]
+    RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\.\./|\.\.) [NC]
+    RewriteRule .* - [F,L]
+    
+    # Block SQL injection attempts
+    RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+    RewriteRule .* - [F,L]
+</IfModule>
+
+# ============ FORCE HTTPS (PRODUCTION) ============
+# ⚠️ AKTIFKAN setelah SSL Certificate terpasang!
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteCond %{HTTPS} off
+#     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
+
+# ============ RATE LIMITING (mod_evasive) ============
+# Requires mod_evasive module
+# <IfModule mod_evasive20.c>
+#     DOSHashTableSize    3097
+#     DOSPageCount        5
+#     DOSSiteCount        50
+#     DOSPageInterval     1
+#     DOSSiteInterval     1
+#     DOSBlockingPeriod   10
+# </IfModule>
+
+# ============ REQUEST SIZE LIMIT ============
+<IfModule mod_security.c>
+    SecRequestBodyLimit 10485760
+</IfModule>
+
+LimitRequestBody 10485760
+
+# ============ ETAG REMOVAL ============
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+FileETag None
+
+# ============ PREVENT HOTLINKING ============
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?yourdomain\.com [NC]
+    RewriteRule \.(jpg|jpeg|png|gif|svg|pdf)$ - [F,L]
+</IfModule>
+
+# ============ CUSTOM ERROR PAGES ============
+# Pastikan file error.html sudah dibuat
+# ErrorDocument 403 /error.html
+# ErrorDocument 404 /error.html
+# ErrorDocument 500 /error.html
+
+# ============ END OF FILE ============

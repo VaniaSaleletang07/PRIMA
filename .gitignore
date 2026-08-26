@@ -1,0 +1,28 @@
+# Local environment and generated secrets
+.env
+.env.*
+!.env.example
+.rnd
+rsa-keys/*.pem
+
+# Database dumps containing local or production data
+u*_*.sql
+
+# Runtime data
+logs/*.log
+foto/*
+!foto/.gitkeep
+uploads/dokumen/*
+!uploads/dokumen/README.md
+storage/app/public/qrcode/*
+!storage/app/public/qrcode/.gitkeep
+
+# Local-only server overrides
+config.local.php
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

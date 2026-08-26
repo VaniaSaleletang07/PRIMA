@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^([0-9a-fA-F-]{36})/?$ index.php?uuid=$1 [L,QSA]
