@@ -561,7 +561,7 @@
 
             <div id="alertBox" class="alert"></div>
 
-            <form id="loginForm" method="POST" action="process-login.php">
+            <form id="loginForm" method="POST" action="../auth/process-login.php">
                 <div class="form-group">
                     <label class="form-label" for="username">Username</label>
                     <input type="text" id="username" name="username" class="form-input" 
@@ -583,7 +583,7 @@
             </div>
 
             <div class="register-link">
-                <p>Belum punya akun? <a href="register.php">Daftar di sini</a></p>
+                <p>Belum punya akun? <a href="../auth/register.php">Daftar di sini</a></p>
             </div>
         </div>
     </div>

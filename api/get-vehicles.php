@@ -5,10 +5,10 @@
  * Updated: Ambil dari tabel kendaraan yang baru
  */
 
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireLogin();
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 // Auto-create vehicle table if not exists
 ensureVehicleTableExists();

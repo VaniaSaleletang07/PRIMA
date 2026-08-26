@@ -1,5 +1,5 @@
 <?php
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireLogin();
 
 $user = getCurrentUser();
@@ -10,7 +10,7 @@ $user = getCurrentUser();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Data Checklist E-KIM - Pertamina Patra Niaga</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../assets/style.css" />
     <style>
         body {
             background: #f1f4f8;
@@ -669,7 +669,7 @@ $user = getCurrentUser();
                 <span class="top-bar-user-name"><?php echo htmlspecialchars($user['full_name'] ?: $user['username']); ?></span>
                 <span class="top-bar-user-role"><?php echo getRoleLabel(); ?></span>
             </div>
-            <a href="logout.php" class="btn-topbar-danger">Keluar</a>
+            <a href="../auth/logout.php" class="btn-topbar-danger">Keluar</a>
         </div>
     </header>
     <div class="page-content">
@@ -680,9 +680,9 @@ $user = getCurrentUser();
                 <span class="user-info-text">Selamat datang, <strong><?php echo htmlspecialchars($user['full_name']); ?></strong></span>
                 <div class="user-bar-actions">
                     <?php if ($user['role'] === 'admin'): ?>
-                        <a href="home.php" class="btn btn-print">&#9881;&#65039; Dashboard Admin</a>
+                        <a href="../home.php" class="btn btn-print">&#9881;&#65039; Dashboard Admin</a>
                     <?php endif; ?>
-                    <a href="logout.php" class="btn-logout">Keluar</a>
+                    <a href="../auth/logout.php" class="btn-logout">Keluar</a>
                 </div>
             </div>
             <div class="page-header">
@@ -693,10 +693,10 @@ $user = getCurrentUser();
                     <p>Sistem Manajemen Inspeksi Perpanjangan Kartu Izin Masuk</p>
                 </div>
                 <div class="header-actions">
-                    <button class="btn btn-print" onclick="window.location.href='home.php'">← Kembali</button>
+                    <button class="btn btn-print" onclick="window.location.href="../home.php"">← Kembali</button>
                     <?php if (!isManager()): ?>
-                    <button class="btn btn-save" onclick="window.location.href='index.html'">Input SPBU</button>
-                    <button class="btn btn-print" onclick="window.location.href='index-industri.html'">Input Industri</button>
+                    <button class="btn btn-save" onclick="window.location.href="../index.html"">Input SPBU</button>
+                    <button class="btn btn-print" onclick="window.location.href="../index-industri.html"">Input Industri</button>
                     <?php endif; ?>
                 </div>
             </div>

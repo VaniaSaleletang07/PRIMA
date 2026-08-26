@@ -4,11 +4,11 @@
  * PRIMA (Pertamina Checklist Mobil Tangki)
  */
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 // Only allow POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: register.php');
+    header("Location: ../auth/register.php");
     exit;
 }
 

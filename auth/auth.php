@@ -4,7 +4,7 @@
  * PRIMA (Pertamina Checklist Mobil Tangki)
  */
 
-require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/../config/config.php';
 
 // Function to check if user is logged in
 function isLoggedIn() {
@@ -99,7 +99,7 @@ function forbiddenPage(string $message = 'Akses ditolak. Anda tidak memiliki izi
        . 'a{display:inline-block;margin-top:16px;color:#10334d;font-weight:600;text-decoration:none}</style>'
        . '</head><body><div class="box"><h1>403</h1><h2>Forbidden</h2>'
        . '<p>' . htmlspecialchars($message) . '</p>'
-       . '<a href="home.php">&larr; Kembali ke Home</a></div></body></html>';
+       . '<a href="../home.php">&larr; Kembali ke Home</a></div></body></html>';
     exit;
 }
 
@@ -120,7 +120,7 @@ function isActiveUser() {
 // Function to require login
 function requireLogin() {
     if (!isLoggedIn()) {
-        header('Location: login.php');
+        header("Location: ../auth/login.php");
         exit;
     }
     
@@ -166,7 +166,7 @@ function updateLastActivity() {
     $_SESSION['last_activity'] = time();
     
     // Update session in database
-    require_once 'config.php';
+    require_once '../config/config.php';
     try {
         $db = Database::getInstance()->getConnection();
         $stmt = $db->prepare("
@@ -201,7 +201,7 @@ function checkSessionTimeout() {
 function logout() {
     if (isLoggedIn()) {
         // Remove session from database
-        require_once 'config.php';
+        require_once '../config/config.php';
         try {
             $db = Database::getInstance()->getConnection();
             $stmt = $db->prepare("DELETE FROM user_sessions WHERE session_id = :session_id");
@@ -212,7 +212,7 @@ function logout() {
     }
     
     session_destroy();
-    header('Location: login.php');
+    header("Location: ../auth/login.php");
     exit;
 }
 

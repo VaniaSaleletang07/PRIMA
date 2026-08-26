@@ -23,7 +23,7 @@ echo "Hash: $old_hash\n";
 echo "Valid untuk 'admin123': " . ($is_valid ? 'YES ✅' : 'NO ❌') . "\n\n";
 
 // Update database
-require_once 'config.php';
+require_once '../config/config.php';
 
 try {
     $db = Database::getInstance()->getConnection();

@@ -4,11 +4,11 @@
  * PRIMA (Pertamina Checklist Mobil Tangki)
  */
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 // Only allow POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: login.php');
+    header("Location: ../auth/login.php");
     exit;
 }
 
@@ -141,7 +141,7 @@ try {
     logAudit(null, 'LOGIN', $user['username'], "User login dari IP: {$ip_address}");
     
     // Redirect setelah login
-    header('Location: home.php');
+    header("Location: ../home.php");
     exit;
         
 } catch(Exception $e) {

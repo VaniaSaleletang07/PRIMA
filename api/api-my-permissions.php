@@ -10,9 +10,9 @@
  * tidak pernah di-role-gate oleh applyRoleBasedSignatureUI() di script.js.
  */
 
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireLogin();
-require_once 'config.php';
+require_once '../config/config.php';
 
 header('Content-Type: application/json; charset=utf-8');
 

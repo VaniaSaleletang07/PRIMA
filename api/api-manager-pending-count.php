@@ -1,8 +1,8 @@
 <?php
 /** Lightweight notification counter for the Manager dashboard. */
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireLogin();
-require_once 'config.php';
+require_once '../config/config.php';
 
 if (!isManager()) {
     jsonResponse(false, 'Akses ditolak', null, 403);
