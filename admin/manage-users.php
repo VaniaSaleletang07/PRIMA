@@ -4,10 +4,10 @@
  * PRIMA (Pertamina Checklist Mobil Tangki)
  */
 
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireAdmin();
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 $user = getCurrentUser();
 
@@ -34,7 +34,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Users - Admin Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/style.css">
     <style>
         body {
             background: #f5f5f5;
@@ -460,14 +460,14 @@ try {
     <div class="user-info-bar">
         <span class="user-info-text">Selamat datang, <strong><?php echo htmlspecialchars($user['full_name']); ?></strong> (Administrator)</span>
         <div style="display: flex; gap: 10px;">
-            <a href="home.php" class="btn" style="padding: 8px 18px; background: #6c757d; color: white; text-decoration: none; border-radius: 6px; font-size: 13px;">← Dashboard</a>
-            <a href="logout.php" class="btn-logout">Logout</a>
+            <a href="../home.php" class="btn" style="padding: 8px 18px; background: #6c757d; color: white; text-decoration: none; border-radius: 6px; font-size: 13px;">← Dashboard</a>
+            <a href="../auth/logout.php" class="btn-logout">Logout</a>
         </div>
     </div>
     <div class="page-container">
         <div class="page-header">
             <h1>Kelola Users</h1>
-            <a href="home.php" class="btn-back">← Kembali ke Dashboard</a>
+            <a href="../home.php" class="btn-back">← Kembali ke Dashboard</a>
         </div>
 
         <div class="users-table">

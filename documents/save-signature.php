@@ -9,9 +9,9 @@
  * RSA-2048 atas hash dokumen (konsisten dengan sign-checklist.php).
  */
 
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireLogin();
-require_once 'config.php';
+require_once '../config/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     jsonResponse(false, 'Method tidak diizinkan', null, 405);

@@ -4,10 +4,10 @@
  * PRIMA (Pertamina Checklist Mobil Tangki)
  */
 
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireAdmin();
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 $user = getCurrentUser();
 
@@ -56,7 +56,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - PRIMA</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/style.css">
     <style>
         body {
             background: #eef2f7;
@@ -483,7 +483,7 @@ try {
 
             <div class="nav-title">Menu</div>
             <nav>
-                <a href="admin-dashboard.php" class="nav-link active">Dashboard</a>
+                <a href="../admin/admin-dashboard.php" class="nav-link active">Dashboard</a>
             <div class="nav-group">
                 <a href="#" class="nav-link nav-link-toggle" id="toggleChecklist">
                 Input Checklist
@@ -495,8 +495,8 @@ try {
                 <a href="#" class="submenu-link active" data-target="section-data">Data & Database KIM</a>
                 </div>
             </div>
-                <a href="list.php" class="nav-link">Data Checklist</a>
-                <a href="register-vehicle.php" class="nav-link">Registrasi Kendaraan</a>
+                <a href="../api/list.php" class="nav-link">Data Checklist</a>
+                <a href="../vehicles/register-vehicle.php" class="nav-link">Registrasi Kendaraan</a>
             </nav>
 
             <div class="sidebar-footer">
@@ -516,7 +516,7 @@ try {
                         <strong><?php echo htmlspecialchars($user['full_name']); ?></strong>
                         <span>Administrator</span>
                     </div>
-                    <a href="logout.php" class="btn-logout">Logout</a>
+                    <a href="../auth/logout.php" class="btn-logout">Logout</a>
                 </div>
             </div>
 
@@ -547,7 +547,7 @@ try {
         </div>
 
         <div class="menu-grid">
-            <a href="approve-registrations.php" class="menu-card">
+            <a href="../admin/approve-registrations.php" class="menu-card">
                 <h3>Review Pendaftaran</h3>
                 <p>Lihat dan approve/reject pendaftaran user baru yang masuk</p>
                 <?php if ($pending_count > 0): ?>
@@ -555,7 +555,7 @@ try {
                 <?php endif; ?>
             </a>
 
-            <a href="vehicle-alerts.php" class="menu-card" style="border-top: 5px solid #ff6b6b;">
+            <a href="../vehicles/vehicle-alerts.php" class="menu-card" style="border-top: 5px solid #ff6b6b;">
                 <h3>Notifikasi Inspeksi Kendaraan</h3>
                 <p>Pantau kendaraan yang akan/sudah expired KIM, perlu inspeksi ulang</p>
                 <?php if ($alert_count > 0): ?>
@@ -565,22 +565,22 @@ try {
                 <?php endif; ?>
             </a>
 
-            <a href="manage-users.php" class="menu-card">
+            <a href="../admin/manage-users.php" class="menu-card">
                 <h3>Kelola User</h3>
                 <p>Manage user yang sudah terdaftar, aktifkan/nonaktifkan akun</p>
             </a>
 
-            <a href="list.php" class="menu-card">
+            <a href="../api/list.php" class="menu-card">
                 <h3>Data Checklist</h3>
                 <p>Lihat semua data checklist yang telah diinput user</p>
             </a>
 
-            <a href="audit-logs.php" class="menu-card">
+            <a href="../admin/audit-logs.php" class="menu-card">
                 <h3>Audit Logs</h3>
                 <p>Monitoring aktivitas user dan perubahan data sistem</p>
             </a>
 
-            <a href="home.php" class="menu-card">
+            <a href="../home.php" class="menu-card">
                 <h3>Input Checklist</h3>
                 <p>Input data checklist baru untuk SPBU atau Industri</p>
             </a>
@@ -591,12 +591,12 @@ try {
                 <span class="menu-badge">Google Form →</span>
             </a>
 
-            <a href="system-settings.php" class="menu-card">
+            <a href="../config/system-settings.php" class="menu-card">
                 <h3>Pengaturan Sistem</h3>
                 <p>Konfigurasi sistem, backup database, dan maintenance</p>
             </a>
 
-            <a href="pending-approval.php" class="menu-card" style="border-top: 4px solid #7c3aed;">
+            <a href="../admin/pending-approval.php" class="menu-card" style="border-top: 4px solid #7c3aed;">
                 <h3>Antrian Tanda Tangan Digital</h3>
                 <p>Kelola formulir yang menunggu tanda tangan HSSE dan Manajer HSSE</p>
                 <?php if ($ttd_pending_count > 0): ?>
@@ -606,13 +606,13 @@ try {
                 <?php endif; ?>
             </a>
 
-            <a href="verify-ttd.php" class="menu-card" style="border-top: 4px solid #059669;">
+            <a href="../documents/verify-ttd.php" class="menu-card" style="border-top: 4px solid #059669;">
                 <h3>Verifikasi TTD Digital</h3>
                 <p>Verifikasi keaslian tanda tangan digital RSA-2048/SHA-256 pada formulir checklist</p>
                 <span class="menu-badge" style="background: #059669;">Kriptografi</span>
             </a>
 
-            <a href="generate-keys.php" class="menu-card" style="border-top: 4px solid #0891b2;">
+            <a href="../documents/generate-keys.php" class="menu-card" style="border-top: 4px solid #0891b2;">
                 <h3>Kelola Kunci RSA</h3>
                 <p>Generate dan kelola pasangan kunci RSA-2048 untuk sistem tanda tangan digital</p>
                 <span class="menu-badge" style="background: #0891b2;">Admin Only</span>

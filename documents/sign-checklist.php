@@ -11,9 +11,9 @@
  *   reset_draft  — Reset ke Draft agar bisa diedit ulang (Admin saja)
  */
 
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireLogin();
-require_once 'config.php';
+require_once '../config/config.php';
 
 // Parse input: support JSON body atau form-data
 $ct = $_SERVER['CONTENT_TYPE'] ?? '';

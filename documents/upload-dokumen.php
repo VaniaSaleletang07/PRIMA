@@ -3,8 +3,8 @@
  * Upload Dokumen Kendaraan — Pengurus Mobil Tangki
  * PRIMA (Pertamina Checklist Mobil Tangki)
  */
-require_once 'auth.php';
-require_once 'config.php';
+require_once '../auth/auth.php';
+require_once '../config/config.php';
 requirePengurusOrAdmin();
 
 ensurePengurusTablesExist();
@@ -16,7 +16,7 @@ $msgType  = '';
 
 // Validate nopol and access
 if (empty($nopol)) {
-    header('Location: home.php');
+    header("Location: ../home.php");
     exit;
 }
 
@@ -339,7 +339,7 @@ $statusColor = ['PENDING' => '#92400e:#fef9c3', 'DISETUJUI' => '#15803d:#dcfce7'
             </p>
         </div>
         <div class="header-actions">
-            <a href="home.php" class="btn">&#8592; Kembali</a>
+            <a href="../home.php" class="btn">&#8592; Kembali</a>
         </div>
     </div>
 

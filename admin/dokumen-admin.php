@@ -3,8 +3,8 @@
  * Manajemen Dokumen Kendaraan — Admin
  * Review dokumen yang diupload pengurus, dan assign kendaraan ke pengurus
  */
-require_once 'auth.php';
-require_once 'config.php';
+require_once '../auth/auth.php';
+require_once '../config/config.php';
 requireAdmin();
 
 ensurePengurusTablesExist();
@@ -210,7 +210,7 @@ $jenisList = [
             <p>Review dokumen kendaraan &amp; kelola akses pengurus mobil tangki</p>
         </div>
         <div class="header-actions">
-            <a href="home.php" class="btn">&#8592; Dashboard</a>
+            <a href="../home.php" class="btn">&#8592; Dashboard</a>
         </div>
     </div>
 

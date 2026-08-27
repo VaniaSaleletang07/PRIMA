@@ -5,9 +5,9 @@
  * PRIMA (Pertamina Checklist Mobil Tangki)
  */
 
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireAdmin();
-require_once 'config.php';
+require_once '../config/config.php';
 
 $user = getCurrentUser();
 $message = '';
@@ -119,7 +119,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Kunci RSA — Admin</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/style.css">
     <style>
         body { background: #eef2f7; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
         .page-wrap { max-width: 960px; margin: 0 auto; padding: 28px 20px; }
@@ -162,7 +162,7 @@ try {
             <h1>Kelola Kunci RSA Digital Signature</h1>
             <div style="color:#a7c8dc;font-size:13px;margin-top:4px;">RSA-2048 · SHA-256 · PKCS#1 v1.5</div>
         </div>
-        <a href="system-settings.php" class="back-link">← Kembali ke Pengaturan</a>
+        <a href="../config/system-settings.php" class="back-link">← Kembali ke Pengaturan</a>
     </div>
 
     <?php if ($message): ?>

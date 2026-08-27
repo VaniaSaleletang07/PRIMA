@@ -8,9 +8,9 @@
  * Admin: melihat semua
  */
 
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireLogin();
-require_once 'config.php';
+require_once '../config/config.php';
 
 if (!canAccessApproval()) {
     forbiddenPage('Halaman Antrian Persetujuan hanya dapat diakses oleh HSSE, Manager, atau Admin.');
@@ -75,7 +75,7 @@ $status_info = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antrian Persetujuan — E-KIM</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/style.css">
     <style>
         body { background: #eef2f7; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
         .page-wrap { max-width: 1200px; margin: 0 auto; padding: 24px 20px; }

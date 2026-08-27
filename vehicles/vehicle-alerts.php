@@ -1,8 +1,8 @@
 <?php
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireAdmin();
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 $user = getCurrentUser();
 $alerts = getVehicleAlerts(30); // Get alerts for next 30 days
@@ -263,7 +263,7 @@ foreach ($alerts as $alert) {
                 <div class="page-subtitle">Pemantauan status KIM &amp; jadwal inspeksi kendaraan tangki</div>
             </div>
         </div>
-        <a href="home.php" class="btn-back">
+        <a href="../home.php" class="btn-back">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
             Kembali ke Dashboard
         </a>

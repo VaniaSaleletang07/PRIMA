@@ -1,8 +1,8 @@
 <?php
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireNonManager();
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 // Auto-create vehicle table if not exists
 ensureVehicleTableExists();
@@ -329,7 +329,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span class="top-bar-user-name"><?php echo htmlspecialchars($user['full_name'] ?: $user['username']); ?></span>
                 <span class="top-bar-user-role"><?php echo getRoleLabel(); ?></span>
             </div>
-            <a href="logout.php" class="btn-topbar-danger">Keluar</a>
+            <a href="../auth/logout.php" class="btn-topbar-danger">Keluar</a>
         </div>
     </header>
     <div class="page-content">
@@ -346,7 +346,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="page-subtitle">Daftarkan kendaraan tangki baru untuk checklist inspeksi</div>
             </div>
         </div>
-        <a href="home.php" class="btn-back">
+        <a href="../home.php" class="btn-back">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
             Kembali
         </a>
@@ -450,7 +450,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </div>
         <div class="form-footer">
-            <a href="home.php" class="btn btn-secondary">Batal</a>
+            <a href="../home.php" class="btn btn-secondary">Batal</a>
             <button type="submit" class="btn btn-primary">
                 <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
                 Daftarkan Kendaraan

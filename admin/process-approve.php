@@ -4,10 +4,10 @@
  * PRIMA (Pertamina Checklist Mobil Tangki)
  */
 
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireAdmin();
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 header('Content-Type: application/json');
 

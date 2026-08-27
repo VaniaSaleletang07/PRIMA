@@ -7,7 +7,7 @@
  * Memverifikasi keaslian dan integritas formulir checklist kendaraan.
  */
 
-require_once 'config.php';
+require_once '../config/config.php';
 
 // Tidak memerlukan login — halaman publik untuk verifikasi
 

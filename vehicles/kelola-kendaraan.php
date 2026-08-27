@@ -3,9 +3,9 @@
  * Kelola Kendaraan — Admin
  * PRIMA (Pertamina Checklist Mobil Tangki)
  */
-require_once 'auth.php';
+require_once '../auth/auth.php';
 requireAdmin();
-require_once 'config.php';
+require_once '../config/config.php';
 
 ensureVehicleTableExists();
 ensurePengurusTablesExist();
@@ -217,7 +217,7 @@ try {
                 <span class="top-bar-user-name"><?php echo htmlspecialchars($user['full_name'] ?: $user['username']); ?></span>
                 <span class="top-bar-user-role"><?php echo getRoleLabel(); ?></span>
             </div>
-            <a href="logout.php" class="btn-topbar-danger">Keluar</a>
+            <a href="../auth/logout.php" class="btn-topbar-danger">Keluar</a>
         </div>
     </header>
     <div class="page-content">
