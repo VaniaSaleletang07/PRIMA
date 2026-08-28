@@ -1,6 +1,6 @@
-﻿<?php
-require_once 'auth.php';
-require_once 'config.php';
+<?php
+require_once 'auth/auth.php';
+require_once 'config/config.php';
 requireLogin();
 
 $user = getCurrentUser();
@@ -671,7 +671,7 @@ if (isPengurus()) {
           <a href="#" id="navDataDB" data-section="section-data" class="<?php echo isAdmin() ? '' : 'active-sub'; ?>">Data &amp; Database</a>
         </div>
 
-        <a href="list.php" class="nav-item">
+        <a href="api/list.php" class="nav-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <line x1="8" y1="6" x2="21" y2="6"/>
             <line x1="8" y1="12" x2="21" y2="12"/>
@@ -684,7 +684,7 @@ if (isPengurus()) {
         </a>
 
         <?php if (isAdmin()): ?>
-        <a href="kelola-kendaraan.php" class="nav-item">
+        <a href="vehicles/kelola-kendaraan.php" class="nav-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <rect x="1" y="3" width="15" height="13" rx="1"/>
             <polygon points="16,8 20,8 23,11 23,16 16,16 16,8"/>
@@ -695,7 +695,7 @@ if (isPengurus()) {
         </a>
         <?php endif; ?>
 
-        <a href="register-vehicle.php" class="nav-item">
+        <a href="vehicles/register-vehicle.php" class="nav-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <rect x="1" y="3" width="15" height="13" rx="1"/>
             <polygon points="16,8 20,8 23,11 23,16 16,16 16,8"/>
@@ -707,7 +707,7 @@ if (isPengurus()) {
         <?php endif; ?>
 
         <?php if (isManager()): ?>
-        <a href="pending-approval.php" class="nav-item">
+        <a href="admin/pending-approval.php" class="nav-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <path d="M20 6 9 17l-5-5"/><path d="M20 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10"/>
           </svg>
@@ -716,11 +716,11 @@ if (isPengurus()) {
           <span class="nav-badge" id="manager-pending-badge"><?php echo $manager_pending_count; ?></span>
           <?php endif; ?>
         </a>
-        <a href="list.php?status=approved" class="nav-item">
+        <a href="api/list.php?status=approved" class="nav-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
           Checklist Approved
         </a>
-        <a href="list.php" class="nav-item">
+        <a href="api/list.php" class="nav-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
             <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
@@ -752,9 +752,9 @@ if (isPengurus()) {
             <span class="top-bar-user-role"><?php echo getRoleLabel(); ?></span>
           </div>
           <?php if (!isManager()): ?>
-          <a href="get-user.php" class="btn-topbar">Akun HSSE</a>
+          <a href="api/get-user.php" class="btn-topbar">Akun HSSE</a>
           <?php endif; ?>
-          <a href="logout.php" class="btn-topbar-danger">Keluar</a>
+          <a href="auth/logout.php" class="btn-topbar-danger">Keluar</a>
         </div>
       </header>
 
@@ -767,14 +767,14 @@ if (isPengurus()) {
             <p>Review checklist yang telah ditandatangani HSSE dan berikan persetujuan akhir.</p>
           </div>
           <div class="metrics-row">
-            <a href="pending-approval.php" class="metric-card" style="text-decoration:none;color:inherit;">
+            <a href="admin/pending-approval.php" class="metric-card" style="text-decoration:none;color:inherit;">
               <div class="metric-label">Checklist Menunggu Approval</div>
               <div class="metric-value"><?php echo $manager_pending_count; ?></div>
               <div class="metric-status <?php echo $manager_pending_count > 0 ? 'alert' : 'ok'; ?>">
                 <?php echo $manager_pending_count > 0 ? 'Perlu Ditinjau' : 'Tidak Ada Antrian'; ?>
               </div>
             </a>
-            <a href="list.php?status=approved" class="metric-card" style="text-decoration:none;color:inherit;">
+            <a href="api/list.php?status=approved" class="metric-card" style="text-decoration:none;color:inherit;">
               <div class="metric-label">Checklist Approved</div>
               <div class="metric-value"><?php echo $manager_approved_count; ?></div>
               <div class="metric-status ok">Telah Disetujui</div>
@@ -782,18 +782,18 @@ if (isPengurus()) {
           </div>
           <div class="section-heading">Akses Cepat</div>
           <div class="actions-grid">
-            <a href="pending-approval.php" class="action-card">
+            <a href="admin/pending-approval.php" class="action-card">
               <div class="action-card-category">Persetujuan</div>
               <h4>Checklist Menunggu Persetujuan</h4>
               <p>Lihat detail, review hasil pemeriksaan, dan berikan approval digital.</p>
               <?php if ($manager_pending_count > 0): ?><span class="action-card-badge"><?php echo $manager_pending_count; ?> Menunggu</span><?php endif; ?>
             </a>
-            <a href="list.php?status=approved" class="action-card">
+            <a href="api/list.php?status=approved" class="action-card">
               <div class="action-card-category">Riwayat</div>
               <h4>Checklist Approved</h4>
               <p>Lihat dokumen yang telah disetujui beserta QR Code verifikasinya.</p>
             </a>
-            <a href="list.php" class="action-card">
+            <a href="api/list.php" class="action-card">
               <div class="action-card-category">Riwayat</div>
               <h4>Histori Checklist</h4>
               <p>Lihat seluruh checklist dalam mode baca saja.</p>
@@ -839,7 +839,7 @@ if (isPengurus()) {
           <div class="section-heading">Akses Cepat</div>
           <div class="actions-grid">
 
-            <a href="approve-registrations.php" class="action-card">
+            <a href="admin/approve-registrations.php" class="action-card">
               <div class="action-card-category">Manajemen User</div>
               <h4>Review Pendaftaran</h4>
               <p>Setujui atau tolak permintaan pendaftaran akun baru.</p>
@@ -848,7 +848,7 @@ if (isPengurus()) {
               <?php endif; ?>
             </a>
 
-            <a href="vehicle-alerts.php" class="action-card">
+            <a href="vehicles/vehicle-alerts.php" class="action-card">
               <div class="action-card-category">Inspeksi Kendaraan</div>
               <h4>Notifikasi Inspeksi</h4>
               <p>Kendaraan yang masa berlaku KIM-nya akan atau telah habis.</p>
@@ -859,50 +859,50 @@ if (isPengurus()) {
               <?php endif; ?>
             </a>
 
-            <a href="manage-users.php" class="action-card">
+            <a href="admin/manage-users.php" class="action-card">
               <div class="action-card-category">Manajemen User</div>
               <h4>Kelola Akun User</h4>
               <p>Aktifkan, nonaktifkan, atau ubah akun pengguna sistem.</p>
             </a>
 
-            <a href="list.php" class="action-card">
+            <a href="api/list.php" class="action-card">
               <div class="action-card-category">Data</div>
               <h4>Data Checklist</h4>
               <p>Lihat seluruh data checklist yang telah diinput pengguna.</p>
             </a>
 
-            <a href="audit-logs.php" class="action-card">
+            <a href="admin/audit-logs.php" class="action-card">
               <div class="action-card-category">Keamanan</div>
               <h4>Audit Log Sistem</h4>
               <p>Pantau seluruh aktivitas dan perubahan data dalam sistem.</p>
             </a>
 
-            <a href="system-settings.php" class="action-card">
+            <a href="config/system-settings.php" class="action-card">
               <div class="action-card-category">Sistem</div>
               <h4>Pengaturan Sistem</h4>
               <p>Konfigurasi, backup database, dan pemeliharaan sistem.</p>
             </a>
 
 
-            <a href="register-vehicle.php" class="action-card">
+            <a href="vehicles/register-vehicle.php" class="action-card">
               <div class="action-card-category">Kendaraan</div>
               <h4>Registrasi Kendaraan</h4>
               <p>Daftarkan kendaraan baru ke dalam database sistem.</p>
             </a>
 
-            <a href="email-notifikasi.php" class="action-card">
+            <a href="scripts/email-notifikasi.php" class="action-card">
               <div class="action-card-category">Notifikasi</div>
               <h4>Notifikasi Email KIM</h4>
               <p>Kirim email otomatis ke kontraktor saat masa berlaku KIM kendaraan habis.</p>
             </a>
 
-            <a href="dokumen-admin.php" class="action-card">
+            <a href="admin/dokumen-admin.php" class="action-card">
               <div class="action-card-category">Pengurus</div>
               <h4>Dokumen Pengurus</h4>
               <p>Review dokumen yang diupload pengurus mobil tangki dan kelola penugasan kendaraan.</p>
             </a>
 
-            <a href="kelola-kendaraan.php" class="action-card">
+            <a href="vehicles/kelola-kendaraan.php" class="action-card">
               <div class="action-card-category">Kendaraan</div>
               <h4>Kelola Kendaraan</h4>
               <p>Tambah, ubah, dan hapus data kendaraan. Edit nomor polisi, merk, nama transport, tanggal KIM, dan lainnya.</p>
@@ -1016,7 +1016,7 @@ if (isPengurus()) {
                 <?php endif; ?>
               <?php endif; ?>
             </div>
-            <a href="upload-dokumen.php?nopol=<?php echo urlencode($v['nomor_polisi']); ?>" style="display:inline-flex;align-items:center;gap:6px;background:#c8102e;color:white;border:none;border-radius:4px;padding:9px 16px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap;flex-shrink:0;">
+            <a href="documents/upload-dokumen.php?nopol=<?php echo urlencode($v['nomor_polisi']); ?>" style="display:inline-flex;align-items:center;gap:6px;background:#c8102e;color:white;border:none;border-radius:4px;padding:9px 16px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap;flex-shrink:0;">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
               Upload / Lihat Dokumen
             </a>
@@ -1076,7 +1076,7 @@ if (isPengurus()) {
       <?php if (isManager()): ?>
       async function refreshManagerPendingCount() {
         try {
-          const response = await fetch('api-manager-pending-count.php', { cache: 'no-store' });
+          const response = await fetch('api/api-manager-pending-count.php', { cache: 'no-store' });
           const result = await response.json();
           const badge = document.getElementById('manager-pending-badge');
           if (!result.success || !badge) return;

@@ -18,7 +18,7 @@ $activeNav = $activeNav ?? '';
   <nav class="sidebar-nav">
 
     <?php if (isManager()): ?>
-    <a href="home.php" class="nav-item">
+    <a href="../home.php" class="nav-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
         <rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
@@ -28,7 +28,7 @@ $activeNav = $activeNav ?? '';
     <?php endif; ?>
 
     <?php if (isAdmin()): ?>
-    <a href="home.php" class="nav-item">
+    <a href="../home.php" class="nav-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
         <rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
@@ -38,7 +38,7 @@ $activeNav = $activeNav ?? '';
     <?php endif; ?>
 
     <?php if (isPengurus()): ?>
-    <a href="home.php" class="nav-item">
+    <a href="../home.php" class="nav-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <rect x="1" y="3" width="15" height="13" rx="1"/>
         <polygon points="16,8 20,8 23,11 23,16 16,16 16,8"/>
@@ -64,10 +64,10 @@ $activeNav = $activeNav ?? '';
     <div class="nav-submenu open" id="checklistSubmenu">
       <a href="index.html?jenis=spbu">Checklist MT SPBU</a>
       <a href="index-industri.html?jenis=industri">Checklist MT Industri</a>
-      <a href="home.php">Data &amp; Database</a>
+      <a href="../home.php">Data &amp; Database</a>
     </div>
 
-    <a href="list.php" class="nav-item<?php echo $activeNav === 'checklist' ? ' active' : ''; ?>">
+    <a href="../api/list.php" class="nav-item<?php echo $activeNav === 'checklist' ? ' active' : ''; ?>">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <line x1="8" y1="6" x2="21" y2="6"/>
         <line x1="8" y1="12" x2="21" y2="12"/>
@@ -80,7 +80,7 @@ $activeNav = $activeNav ?? '';
     </a>
 
     <?php if (isAdmin()): ?>
-    <a href="kelola-kendaraan.php" class="nav-item<?php echo $activeNav === 'kelola' ? ' active' : ''; ?>">
+    <a href="../vehicles/kelola-kendaraan.php" class="nav-item<?php echo $activeNav === 'kelola' ? ' active' : ''; ?>">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <rect x="1" y="3" width="15" height="13" rx="1"/>
         <polygon points="16,8 20,8 23,11 23,16 16,16 16,8"/>
@@ -91,7 +91,7 @@ $activeNav = $activeNav ?? '';
     </a>
     <?php endif; ?>
 
-    <a href="register-vehicle.php" class="nav-item<?php echo $activeNav === 'register' ? ' active' : ''; ?>">
+    <a href="../vehicles/register-vehicle.php" class="nav-item<?php echo $activeNav === 'register' ? ' active' : ''; ?>">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <rect x="1" y="3" width="15" height="13" rx="1"/>
         <polygon points="16,8 20,8 23,11 23,16 16,16 16,8"/>
@@ -103,7 +103,7 @@ $activeNav = $activeNav ?? '';
     <?php endif; ?>
 
     <?php if (isManager()): ?>
-    <a href="pending-approval.php" class="nav-item<?php echo $activeNav === 'pending' ? ' active' : ''; ?>">
+    <a href="../admin/pending-approval.php" class="nav-item<?php echo $activeNav === 'pending' ? ' active' : ''; ?>">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <path d="M20 6 9 17l-5-5"/><path d="M20 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10"/>
       </svg>
@@ -113,7 +113,7 @@ $activeNav = $activeNav ?? '';
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
       Checklist Approved
     </a>
-    <a href="list.php" class="nav-item<?php echo $activeNav === 'checklist' ? ' active' : ''; ?>">
+    <a href="../api/list.php" class="nav-item<?php echo $activeNav === 'checklist' ? ' active' : ''; ?>">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
         <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>

@@ -79,7 +79,7 @@
         <p>PRIMA (Pertamina Checklist Mobil Tangki)</p>
         
         <?php
-        require_once 'config.php';
+        require_once 'config/config.php';
         
         echo '<div class="status info">Testing koneksi ke database...</div>';
         
@@ -144,7 +144,7 @@
             echo '<div class="status success">';
             echo '<h3>✅ Sistem Siap Digunakan!</h3>';
             echo '<a href="index.html" class="btn">📝 Form Input</a>';
-            echo '<a href="list.php" class="btn">📋 Lihat Data</a>';
+            echo '<a href="api/list.php" class="btn">📋 Lihat Data</a>';
             echo '</div>';
             
         } catch(Exception $e) {
